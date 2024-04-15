@@ -51,7 +51,7 @@ echo.   ████──█─█──█──█─████─█──
 echo.
 echo.
 echo.            %t%Windows%t%             
-echo.  %w%══════════════════════%y%    %w%══════════════════════════════════════════════════════════════%y%
+echo.  %w%══════════════════════%y%
 echo.  %c%[%y% %c%%u%1%q%%t% %w%]%y% %c%PowerPlanV1 Change PowerPlanV2%t%
 echo.  %c%[%y% %c%%u%2%q% %t%%w%]%y% %c%Services%t%
 echo.  %c%[%y% %c%%u%3%q%%t% %w%]%y% %c%Network%t%
