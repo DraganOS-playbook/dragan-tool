@@ -64,7 +64,7 @@ set HomeSelection=%errorlevel%
 if %HomeSelection% == 1 (call :powerplan)
 if %HomeSelection% == 2 (call :services)
 if %HomeSelection% == 3 (call :network)
-if %HomeSelection% == 4 (call :gamepriority)
+if %HomeSelection% == 4 (call :games)
 if %HomeSelection% == 5 (call :clear)
 pause
 
@@ -283,8 +283,60 @@ echo let's return home..
 timeout /t 3 /nobreak > NUL
 goto main
 
+:: number 4 menu
+:games
+set z=[7m
+set i=[1m
+set q=[0m
+echo %z%Are you on cs2, valorant fortnite?%q%
+echo.
+echo %i%cs2 = 1%q%
+echo.
+echo %i%valorant = 2%q%
+echo.
+echo %i%fortnite = 3%q%
+echo.
+set choice=
+set /p choice=
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%choice%'=='1' goto cs2
+if '%choice%'=='2' goto valorant
+if '%choice%'=='3' goto fortnite
 
-:: number 6 menu
+:cs2
+cls
+title priority cs2..
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\cs2.exe\PerfOptions" /v "CpuPriorityClass" /t REG_DWORD /d "8" /f
+echo Wait 2 second...
+timeout /t 2 /nobreak >nul
+cls
+echo Wait 1 second...
+timeout /t 1 /nobreak >nul
+goto home
+
+:valorant
+cls
+title priority valorant..
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\VALORANT.exe\PerfOptions" /v "CpuPriorityClass" /t REG_DWORD /d "8" /f
+echo Wait 2 second...
+timeout /t 2 /nobreak >nul
+cls
+echo Wait 1 second...
+timeout /t 1 /nobreak >nul
+goto home
+
+:fortnite
+cls
+title priority fortnite..
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\FortniteClient-Win64-Shipping.exe" /v "CpuPriorityClass" /t REG_DWORD /d "8" /f
+echo Wait 2 second...
+timeout /t 2 /nobreak >nul
+cls
+echo Wait 1 second...
+timeout /t 1 /nobreak >nul
+goto main
+
+:: number 5 menu
 :clear
 cls
 @REM Cleaning PC
