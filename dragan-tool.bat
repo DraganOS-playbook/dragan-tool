@@ -1,5 +1,4 @@
 @echo off
-
 :: version #
 set Version=1.0 beta
 
@@ -43,12 +42,12 @@ echo.
 echo.
 echo.
 echo.
-echo.  ╔═══╗╔══╗╔══╗╔════╗───╔══╗╔╗─╔╗╔══╗╔════╗╔══╗╔╗──╔╗──
-echo.  ║╔═╗║║╔╗║║╔═╝╚═╗╔═╝───╚╗╔╝║╚═╝║║╔═╝╚═╗╔═╝║╔╗║║║──║║──
-echo.  ║╚═╝║║║║║║╚═╗──║║──────║║─║╔╗─║║╚═╗──║║──║╚╝║║║──║║──
-echo.  ║╔══╝║║║║╚═╗║──║║──────║║─║║╚╗║╚═╗║──║║──║╔╗║║║──║║──
-echo.  ║║───║╚╝║╔═╝║──║║─────╔╝╚╗║║─║║╔═╝║──║║──║║║║║╚═╗║╚═╗
-echo.  ╚╝───╚══╝╚══╝──╚╝─────╚══╝╚╝─╚╝╚══╝──╚╝──╚╝╚╝╚══╝╚══╝
+echo.  %c%╔═══╗╔══╗╔══╗╔════╗───╔══╗╔╗─╔╗╔══╗╔════╗╔══╗╔╗──╔╗──%c%
+echo.  %c%║╔═╗║║╔╗║║╔═╝╚═╗╔═╝───╚╗╔╝║╚═╝║║╔═╝╚═╗╔═╝║╔╗║║║──║║──%c%
+echo.  %c%║╚═╝║║║║║║╚═╗──║║──────║║─║╔╗─║║╚═╗──║║──║╚╝║║║──║║──%c%
+echo.  %c%║╔══╝║║║║╚═╗║──║║──────║║─║║╚╗║╚═╗║──║║──║╔╗║║║──║║──%c%
+echo.  %c%║║───║╚╝║╔═╝║──║║─────╔╝╚╗║║─║║╔═╝║──║║──║║║║║╚═╗║╚═╗%c%
+echo.  %c%╚╝───╚══╝╚══╝──╚╝─────╚══╝╚╝─╚╝╚══╝──╚╝──╚╝╚╝╚══╝╚══╝%c%
 echo.
 echo.
 echo.            %t%Windows%t%             
@@ -61,13 +60,12 @@ echo.  %c%[%y% %c%%u%5%q% %t%%w%]%y% %c%Clear temp%t%
 echo
 set choice=
 set /p choice=
-set HomeSelection=%errorlevel%
-if %HomeSelection% == 1 (call :powerplan)
-if %HomeSelection% == 2 (call :services)
-if %HomeSelection% == 3 (call :network)
-if %HomeSelection% == 4 (call :games)
-if %HomeSelection% == 5 (call :clear)
-pause
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%choice%'=='1' goto powerplan
+if '%choice%'=='2' goto services
+if '%choice%'=='3' goto network
+if '%choice%'=='4' goto games
+if '%choice%'=='5' goto clear
 
 :: number 1 menu
 :powerplan
