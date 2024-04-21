@@ -56,7 +56,8 @@ echo.  %c%[%y% %c%%u%1%q%%t% %w%]%y% %c%PowerPlanV1 Change PowerPlanV2%t%
 echo.  %c%[%y% %c%%u%2%q% %t%%w%]%y% %c%Services%t%
 echo.  %c%[%y% %c%%u%3%q%%t% %w%]%y% %c%Network%t%
 echo.  %c%[%y% %c%%u%4%q% %t%%w%]%y% %c%Game Priority%t%
-echo.  %c%[%y% %c%%u%5%q% %t%%w%]%y% %c%Clear temp%t%  
+echo.  %c%[%y% %c%%u%5%q% %t%%w%]%y% %c%Clear temp%t%
+echo.  %c%[%y% %c%%u%6%q% %t%%w%]%y% %c%SettingsV2 (recommend)%t%
 echo
 set choice=
 set /p choice=
@@ -66,6 +67,7 @@ if '%choice%'=='2' goto services
 if '%choice%'=='3' goto network
 if '%choice%'=='4' goto games
 if '%choice%'=='5' goto clear
+if '%choice%'=='6' goto setV2
 
 :: number 1 menu
 :powerplan
@@ -366,3 +368,6 @@ deltree /y c:\windows\recent
 deltree /y c:\windows\spool\printers
 cls
 goto main
+
+:: number 6 menu
+:setV2
