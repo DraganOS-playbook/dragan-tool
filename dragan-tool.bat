@@ -42,16 +42,16 @@ echo.
 echo.
 echo.
 echo.
-echo.  %c%╔═══╗╔══╗╔══╗╔════╗───╔══╗╔╗─╔╗╔══╗╔════╗╔══╗╔╗──╔╗──%c%
-echo.  %c%║╔═╗║║╔╗║║╔═╝╚═╗╔═╝───╚╗╔╝║╚═╝║║╔═╝╚═╗╔═╝║╔╗║║║──║║──%c%
-echo.  %c%║╚═╝║║║║║║╚═╗──║║──────║║─║╔╗─║║╚═╗──║║──║╚╝║║║──║║──%c%
-echo.  %c%║╔══╝║║║║╚═╗║──║║──────║║─║║╚╗║╚═╗║──║║──║╔╗║║║──║║──%c%
-echo.  %c%║║───║╚╝║╔═╝║──║║─────╔╝╚╗║║─║║╔═╝║──║║──║║║║║╚═╗║╚═╗%c%
-echo.  %c%╚╝───╚══╝╚══╝──╚╝─────╚══╝╚╝─╚╝╚══╝──╚╝──╚╝╚╝╚══╝╚══╝%c%
+echo                                %c%╔═══╗╔══╗╔══╗╔════╗───╔══╗╔╗─╔╗╔══╗╔════╗╔══╗╔╗──╔╗──%c%
+echo                                %c%║╔═╗║║╔╗║║╔═╝╚═╗╔═╝───╚╗╔╝║╚═╝║║╔═╝╚═╗╔═╝║╔╗║║║──║║──%c%
+echo                                %c%║╚═╝║║║║║║╚═╗──║║──────║║─║╔╗─║║╚═╗──║║──║╚╝║║║──║║──%c%
+echo                                %c%║╔══╝║║║║╚═╗║──║║──────║║─║║╚╗║╚═╗║──║║──║╔╗║║║──║║──%c%
+echo                                %c%║║───║╚╝║╔═╝║──║║─────╔╝╚╗║║─║║╔═╝║──║║──║║║║║╚═╗║╚═╗%c%
+echo                                %c%╚╝───╚══╝╚══╝──╚╝─────╚══╝╚╝─╚╝╚══╝──╚╝──╚╝╚╝╚══╝╚══╝%c%
+echo                                                      %c%%u%Version: %Version%%q%%t%
 echo.
-echo.
-echo.            %t%Windows%t%             
-echo.  %w%══════════════════════%y%
+echo %w%════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════%y%
+echo.            %t%Windows%t%
 echo.  %c%[%y% %c%%u%1%q%%t% %w%]%y% %c%PowerPlanV1 Change PowerPlanV2%t%
 echo.  %c%[%y% %c%%u%2%q% %t%%w%]%y% %c%Services%t%
 echo.  %c%[%y% %c%%u%3%q%%t% %w%]%y% %c%Network%t%
@@ -2109,53 +2109,6 @@ schtasks /change /TN "Microsoft\Windows\Speech\SpeechModelDownloadTask" /DISABLE
 schtasks /change /TN "Microsoft\Windows\Windows Error Reporting\QueueReporting" /DISABLE > NUL 2>&1
 schtasks /change /TN "Microsoft\Windows\WindowsColorSystem\Calibration Loader" /DISABLE > NUL 2>&1
 schtasks /change /TN "Microsoft\Windows\Work Folders\Work Folders Logon Synchronization" /DISABLE > NUL 2>&1
-timeout /t 3 /nobreak > NUL
-
-Powershell Set-Service AppVClient -StartupType Disabled
-Powershell Set-Service NetTcpPortSharing -StartupType Disabled
-Powershell Set-Service CscService -StartupType Disabled
-Powershell Set-Service PhoneSvc -StartupType Disabled
-Powershell Set-Service Spooler -StartupType Disabled
-Powershell Set-Service PrintNotify -StartupType Disabled
-Powershell Set-Service QWAVE -StartupType Disabled
-Powershell Set-Service RmSvc -StartupType Disabled
-Powershell Set-Service RemoteAccess -StartupType Disabled
-Powershell Set-Service SensorDataService -StartupType Disabled
-Powershell Set-Service SensrSvc -StartupType Disabled
-Powershell Set-Service SensorService -StartupType Disabled
-Powershell Set-Service ShellHWDetection -StartupType Disabled
-Powershell Set-Service SCardSvr -StartupType Disabled
-Powershell Set-Service ScDeviceEnum -StartupType Disabled
-Powershell Set-Service SSDPSRV -StartupType Disabled
-Powershell Set-Service WiaRpc -StartupType Disabled
-Powershell Set-Service upnphost -StartupType Disabled
-Powershell Set-Service UserDataSvc -StartupType Disabled
-Powershell Set-Service UevAgentService -StartupType Disabled
-Powershell Set-Service WalletService -StartupType Disabled
-Powershell Set-Service FrameServer -StartupType Disabled
-Powershell Set-Service stisvc -StartupType Disabled
-Powershell Set-Service wisvc -StartupType Disabled
-Powershell Set-Service icssvc -StartupType Disabled
-Powershell Set-Service WSearch -StartupType Disabled
-Powershell Set-Service XblAuthManager -StartupType Disabled
-Powershell Set-Service XblGameSave -StartupType Disabled
-Powershell Set-Service SEMgrSvc -StartupType Disabled
-Powershell Set-Service SysMain -StartupType Disabled
-Powershell Set-Service diagnosticshub.standardcollector.service -StartupType Disabled
-Powershell Set-Service diagsvc -StartupType Disabled
-Powershell Set-Service WbioSrvc -StartupType Disabled
-Powershell Set-Service MapsBloker -StartupType Disabled
-Powershell Set-Service lfsvc -StartupType Disabled
-Powershell Set-Service UevAgentService -StartupType Disabled
-Powershell Set-Service WinDefend -StartupType Disabled
-Powershell Set-Service SecurityHealthService -StartupType Disabled
-Powershell Set-Service WdNisSvc -StartupType Disabled
-Powershell Set-Service Sense -StartupType Disabled
-Powershell Set-Service wscsvc -StartupType Disabled
-Powershell Set-Service AxInstSV -StartupType Disabled
-Powershell Set-Service dmwappushservice -StartupType Disabled
-Powershell Set-Service SharedAccess -StartupType Disabled
-Powershell Set-Service lltdsvc -StartupType Disabled
 echo everything is ready, you can restart your computer
 timeout /t 3 /nobreak >nul
 goto main
