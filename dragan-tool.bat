@@ -423,39 +423,12 @@ del "%WinDir%\System32\mcupdate_authenticamd.dll" /s /f /q
 timeout /t 1 /nobreak > NUL
 
 :: Import power plan
-curl -g -k -L -# -o "C:\powerplan.pow" "https://cdn.discordapp.com/attachments/1225846086111854706/1228754893968248852/powerplan.pow?ex=662d322b&is=661abd2b&hm=2f136b2e41366de65cf47742bbb6f3d62aa447c710ec8a9ad60e72aa00ea64e1&"
+curl -g -k -L -# -o "C:\powerplan.pow" "https://cdn.discordapp.com/attachments/1164187483278430389/1232736597145944174/powercfg.pow?ex=662a8aeb&is=6629396b&hm=22110c160a4598f4dc7544664f7ef84e1c091bbdf15297a6403b5701139c5b1f&"
 powercfg -import "C:\powerplan.pow" 120ea5af-085f-41e2-8e8b-dd538b38e4f7
 powercfg -setactive 120ea5af-085f-41e2-8e8b-dd538b38e4f7
 echo power plan hibernate disabled...
 powercfg /hibernate off
 timeout /t 3 /nobreak > NUL
-
-:: clear pc
-del /s /f /q c:\windows\temp.
-del /s /f /q C:\WINDOWS\Prefetch
-del /s /f /q %temp%.
-del /s /f /q %systemdrive%\*.tmp
-del /s /f /q %systemdrive%\*._mp
-del /s /f /q %systemdrive%\*.log 
-del /s /f /q %systemdrive%\*.gid 
-del /s /f /q %systemdrive%\*.chk 
-del /s /f /q %systemdrive%\*.old
-del /s /f /q %systemdrive%\recycled\*.*
-del /s /f /q %systemdrive%\$Recycle.Bin\*.*
-del /s /f /q %windir%\*.bak
-del /s /f /q %windir%\prefetch\*.*
-del /s /f /q %LocalAppData%\Microsoft\Windows\Explorer\thumbcache_*.db
-del /s /f /q %LocalAppData%\Microsoft\Windows\Explorer\*.db 
-del /f /q %SystemRoot%\Logs\CBS\CBS.log 
-del /f /q %SystemRoot%\Logs\DISM\DISM.log
-deltree /y c:\windows\tempor~1 
-deltree /y c:\windows\temp 
-deltree /y c:\windows\tmp 
-deltree /y c:\windows\ff*.tmp 
-deltree /y c:\windows\history 
-deltree /y c:\windows\cookies 
-deltree /y c:\windows\recent 
-deltree /y c:\windows\spool\printers
 
 :: powershell tweaking
 @rem Debloat Windows & Remove Preinstalled Programs
@@ -632,7 +605,7 @@ for %%a in (
 	IdleInWorkingState
 ) do for /f "delims=" %%b in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum" /s /f "%%a" ^| findstr "HKEY"') do Reg.exe add "%%b" /v "%%a" /t REG_DWORD /d "0" /f > NUL 2>&1
 
-echo disable powershell telemetry
+:: disable powershell telemetry
 Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "POWERSHELL_TELEMETRY_OPTOUT" /t REG_SZ /d "1" /f
 
 :: registry latency disabled
@@ -673,27 +646,6 @@ timeout /t 3 /nobreak > NUL
 
 :: notification about free version completion
 reg add "HKEY_LOCAL_MACHINESOFTWARE\Microsoft\Office\15.0\Registration\{87D2B5BF-D47B-41FB-AF62-71C382F5CC85" /v "HideTrial" /t REG_DWORD /d "1" /f
-
-:: Windows privacy 
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\activity" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appointments" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\bluetoothSync" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\broadFileSystemAccess" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\chat" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\contacts" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\documentsLibrary" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\gazeInput" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone" /v "Value" /t REG_SZ /d "Allow" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone\Microsoft.Win32WebViewHost_cw5n1h2txyewy" /v "Value" /t REG_SZ /d "Prompt" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\phoneCall" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\phoneCallHistory" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\picturesLibrary" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\radios" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userNotificationListener" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\videosLibrary" /v "Value" /t REG_SZ /d "Deny" /f
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Start_TrackProgs" /d "0" /t REG_DWORD /f
-timeout /t 3 /nobreak > NUL
 
 :: ContentDeliveryManager settings and subscription disabled
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SystemPaneSuggestionsEnabled" /t REG_DWORD /d "0" /f
@@ -990,12 +942,11 @@ reg delete "HKCU\System\GameConfigStore\Parents" /f
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "PromptOnSecureDesktop" /t REG_DWORD /d 0 /f
 timeout /t 3 /nobreak > NUL
 
-:: win32priorty and etc
+:: SystemResponsiveness and etc
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t REG_DWORD /d "0a" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NoLazyMode" /t REG_DWORD /d "1" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d "0" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v "ConvertibleSlateMode" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v "Win32PrioritySeparation" /t REG_DWORD /d "28" /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v "DisableInventory" /t REG_DWORD /d "1" /f
 timeout /t 3 /nobreak > NUL
 
