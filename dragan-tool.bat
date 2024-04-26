@@ -1,6 +1,4 @@
 @echo off
-
-:: version #
 set Version=1.0 beta
 
 :: Getting Admin Permissions https://stackoverflow.com/questions/1894967/how-to-request-administrator-access-inside-a-batch-file
@@ -57,10 +55,10 @@ echo.
 echo.                          %c%[%y% %c%%u%1%q%%t% %w%]%y% %c%PowerPlan%t%                    %c%[%y% %c%%u%2%q% %t%%w%]%y% %c%Services%t%
 echo. 
 echo.
-echo.                          %c%[%y% %c%%u%3%q%%t% %w%]%y% %c%Network%t%                         %c%[%y% %c%%u%4%q% %t%%w%]%y% %c%Game Priority%t% 
+echo.                          %c%[%y% %c%%u%3%q%%t% %w%]%y% %c%Network%t%                      %c%[%y% %c%%u%4%q% %t%%w%]%y% %c%Game Priority%t% 
 echo.
 echo.
-echo.                          %c%[%y% %c%%u%5%q%%t% %w%]%y% %c%Clear temp%t%                      %c%[%y% %c%%u%6%q%%t% %w%]%y% %c%SettingsV2 (Recommended)%t%
+echo.                          %c%[%y% %c%%u%5%q%%t% %w%]%y% %c%Clear temp%t%                   %c%[%y% %c%%u%6%q%%t% %w%]%y% %c%SettingsV2 (Recommended)%t%
 echo
 set choice=
 set /p choice=
@@ -79,12 +77,11 @@ echo PowerPlanV2
 echo.
 
 :: Import power plan
-@REM Import power plan for all users
 curl -g -k -L -# -o "C:\powerplan.pow" "https://cdn.discordapp.com/attachments/1225846086111854706/1228754893968248852/powerplan.pow?ex=662d322b&is=661abd2b&hm=2f136b2e41366de65cf47742bbb6f3d62aa447c710ec8a9ad60e72aa00ea64e1&"
 powercfg -import "C:\powerplan.pow" 120ea5af-085f-41e2-8e8b-dd538b38e4f7
 powercfg -setactive 120ea5af-085f-41e2-8e8b-dd538b38e4f7
 timeout /t 3 /nobreak > NUL
-goto main
+goto Main
 
 :: number 2 menu
 :services
@@ -138,7 +135,7 @@ Powershell Set-Service lltdsvc -StartupType Disabled
 sc delete DiagTrack
 sc delete dmwappushservice
 timeout /t 3 /nobreak > NUL
-goto main
+goto Main
 
 :: number 3 menu
 :network
@@ -285,7 +282,7 @@ timeout /t 1 /nobreak > NUL
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NetBT\Parameters" /v "NetbiosOptions" /t REG_DWORD /d "2" /f
 echo let's return home..
 timeout /t 3 /nobreak > NUL
-goto main
+goto Main
 
 :: number 4 menu
 :games
@@ -338,12 +335,12 @@ timeout /t 2 /nobreak >nul
 cls
 echo Wait 1 second...
 timeout /t 1 /nobreak >nul
-goto main
+goto Main
 
 :: number 5 menu
 :clear
 cls
-@REM Cleaning PC
+
 del /s /f /q c:\windows\temp.
 del /s /f /q C:\WINDOWS\Prefetch
 del /s /f /q %temp%.
@@ -369,8 +366,7 @@ deltree /y c:\windows\history
 deltree /y c:\windows\cookies 
 deltree /y c:\windows\recent 
 deltree /y c:\windows\spool\printers
-cls
-goto main
+goto Main
 
 :: number 6 menu
 :setV2
@@ -424,16 +420,7 @@ del "%WinDir%\System32\mcupdate_genuineintel.dll" /s /f /q
 del "%WinDir%\System32\mcupdate_authenticamd.dll" /s /f /q
 timeout /t 1 /nobreak > NUL
 
-:: Import power plan
-curl -g -k -L -# -o "C:\powerplan.pow" "https://cdn.discordapp.com/attachments/1164187483278430389/1232736597145944174/powercfg.pow?ex=662a8aeb&is=6629396b&hm=22110c160a4598f4dc7544664f7ef84e1c091bbdf15297a6403b5701139c5b1f&"
-powercfg -import "C:\powerplan.pow" 120ea5af-085f-41e2-8e8b-dd538b38e4f7
-powercfg -setactive 120ea5af-085f-41e2-8e8b-dd538b38e4f7
-echo power plan hibernate disabled...
-powercfg /hibernate off
-timeout /t 3 /nobreak > NUL
-
 :: powershell tweaking
-@rem Debloat Windows & Remove Preinstalled Programs
 powershell "ForEach($v in (Get-Command -Name \"Set-ProcessMitigation\").Parameters[\"Disable\"].Attributes.ValidValues){Set-ProcessMitigation -System -Disable $v.ToString() -ErrorAction SilentlyContinue}"
 powershell "Remove-Item -Path \"HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*\" -Recurse -ErrorAction SilentlyContinue"
 PowerShell -Command "Disable-MMAgent -PageCombining"
@@ -951,25 +938,9 @@ timeout /t 3 /nobreak > NUL
 :: SystemResponsiveness and etc
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t REG_DWORD /d "0a" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NoLazyMode" /t REG_DWORD /d "1" /f
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d "0" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v "ConvertibleSlateMode" /t REG_DWORD /d "0" /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v "DisableInventory" /t REG_DWORD /d "1" /f
 timeout /t 3 /nobreak > NUL
-
-:: windows firewall
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc" /v "Start" /t REG_DWORD /d "4" /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\BFE" /v "Start" /t REG_DWORD /d "4" /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile" /v "EnableFirewall" /t REG_DWORD /d "0" /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile" /v "DisableNotifications" /t REG_DWORD /d "1" /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile" /v "DoNotAllowExceptions" /t REG_DWORD /d "1" /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile" /v "EnableFirewall" /t REG_DWORD /d "0" /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile" /v "DisableNotifications" /t REG_DWORD /d "1" /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile" /v "DoNotAllowExceptions" /t REG_DWORD /d "1" /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile" /v "EnableFirewall" /t REG_DWORD /d "0" /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile" /v "DisableNotifications" /t REG_DWORD /d "1" /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile" /v "DoNotAllowExceptions" /t REG_DWORD /d "1" /f
-timeout /t 3 /nobreak > NUL
-
 
 :: logging windows and telemetry disabled
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WUDF" /v "LogEnable" /t REG_DWORD /d "0" /f 
