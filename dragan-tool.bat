@@ -647,6 +647,10 @@ timeout /t 3 /nobreak > NUL
 :: notification about free version completion
 reg add "HKEY_LOCAL_MACHINESOFTWARE\Microsoft\Office\15.0\Registration\{87D2B5BF-D47B-41FB-AF62-71C382F5CC85" /v "HideTrial" /t REG_DWORD /d "1" /f
 
+:: setting the value for devices
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\mouclass\Parameters" /v "MouseDataQueueSize" /t REG_DWORD "32" /f
+reg add "HLKM\SYSTEM\CurrentControlSet\Services\kbdclass\Parameters" /v "KeyboardDataQueueSize" /t REG_DWORD "32" /f
+
 :: ContentDeliveryManager settings and subscription disabled
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SystemPaneSuggestionsEnabled" /t REG_DWORD /d "0" /f
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338388Enabled" /t REG_DWORD /d "0" /f
