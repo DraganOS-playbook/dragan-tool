@@ -51,14 +51,16 @@ echo                                %c%║║───║╚╝║╔═╝║�
 echo                                %c%╚╝───╚══╝╚══╝──╚╝─────╚══╝╚╝─╚╝╚══╝──╚╝──╚╝╚╝╚══╝╚══╝%c%
 echo                                                      %c%%u%Version: %Version%%q%%t%
 echo.
-echo %w%════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════%y%
-echo.            %t%Windows%t%
-echo.  %c%[%y% %c%%u%1%q%%t% %w%]%y% %c%PowerPlanV1 Change PowerPlanV2%t%
-echo.  %c%[%y% %c%%u%2%q% %t%%w%]%y% %c%Services%t%
-echo.  %c%[%y% %c%%u%3%q%%t% %w%]%y% %c%Network%t%
-echo.  %c%[%y% %c%%u%4%q% %t%%w%]%y% %c%Game Priority%t%
-echo.  %c%[%y% %c%%u%5%q% %t%%w%]%y% %c%Clear temp%t%
-echo.  %c%[%y% %c%%u%6%q% %t%%w%]%y% %c%SettingsV2 (recommend)%t%
+echo  %w%════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════%y%
+echo.
+echo.
+echo.                          %c%[%y% %c%%u%1%q%%t% %w%]%y% %c%PowerPlan%t%                    %c%[%y% %c%%u%2%q% %t%%w%]%y% %c%Services%t%
+echo. 
+echo.
+echo.                          %c%[%y% %c%%u%3%q%%t% %w%]%y% %c%Network%t%                         %c%[%y% %c%%u%4%q% %t%%w%]%y% %c%Game Priority%t% 
+echo.
+echo.
+echo.                          %c%[%y% %c%%u%5%q%%t% %w%]%y% %c%Clear temp%t%                      %c%[%y% %c%%u%6%q%%t% %w%]%y% %c%SettingsV2 (Recommended)%t%
 echo
 set choice=
 set /p choice=
