@@ -73,8 +73,6 @@ if '%choice%'=='6' goto setV2
 :: number 1 menu
 :powerplan
 cls
-echo PowerPlanV2
-echo.
 
 :: Import power plan
 curl -g -k -L -# -o "C:\powerplan.pow" "https://cdn.discordapp.com/attachments/1225846086111854706/1228754893968248852/powerplan.pow?ex=662d322b&is=661abd2b&hm=2f136b2e41366de65cf47742bbb6f3d62aa447c710ec8a9ad60e72aa00ea64e1&"
@@ -370,6 +368,8 @@ goto Main
 
 :: number 6 menu
 :setV2
+cls
+
 bcdedit /deletevalue useplatformclock
 bcdedit /set bootmenupolicy Legacy
 bcdedit /set platformtick No
@@ -419,138 +419,6 @@ icacls "%WinDir%\System32\mcupdate_authenticamd.dll" /grant:r Administrators:F /
 del "%WinDir%\System32\mcupdate_genuineintel.dll" /s /f /q
 del "%WinDir%\System32\mcupdate_authenticamd.dll" /s /f /q
 timeout /t 1 /nobreak > NUL
-
-:: powershell tweaking
-powershell "ForEach($v in (Get-Command -Name \"Set-ProcessMitigation\").Parameters[\"Disable\"].Attributes.ValidValues){Set-ProcessMitigation -System -Disable $v.ToString() -ErrorAction SilentlyContinue}"
-powershell "Remove-Item -Path \"HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*\" -Recurse -ErrorAction SilentlyContinue"
-PowerShell -Command "Disable-MMAgent -PageCombining"
-PowerShell -Command "Disable-MMAgent -MemoryCompression"
-echo Removing Unnecessary Powershell Packages
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.BingWeather* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling BingWeather
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.GetHelp* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling GetHelp
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.Getstarted* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling Getstarted
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.Messaging* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling Messaging
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.Microsoft3DViewer* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling Microsoft3DViewer
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling MicrosoftSolitaireCollection
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.MicrosoftStickyNotes* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling MicrosoftStickyNotes
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.MixedReality.Portal* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling MixedReality.Portal
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.OneConnect* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling OneConnect
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.People* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling People
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.Print3D* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling Print3D
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.SkypeApp* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling SkypeApp
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.WindowsAlarms* | Remove-AppxPackage}
-echo Uninstalling WindowsAlarms
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.WindowsCamera* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling WindowsCamera
-Powershell.exe -command "& {Get-AppxPackage *microsoft.windowscommunicationsapps* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling windowscommunicationsapps
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.WindowsMaps* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling WindowsMaps
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.WindowsFeedbackHub* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling WindowsFeedbackHub
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.WindowsSoundRecorder* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling WindowsSoundRecorder
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.YourPhone* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling YourPhone
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.ZuneMusic* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling ZuneMusic
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.HEIFImageExtension* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling HEIFImageExtension
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.WebMediaExtensions* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling WebMediaExtensions
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.WebpImageExtension* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling WebpImageExtension
-Powershell.exe -command "& {Get-AppxPackage *Microsoft.3dBuilder* | Remove-AppxPackage}
-timeout /t 1 /nobreak > NUL
-echo Uninstalling 3dBuilder
-PowerShell -Command "Get-AppxPackage -allusers *bing* | Remove-AppxPackage"
-timeout /t 1 /nobreak > NUL
-echo Uninstalling bing
-PowerShell -Command "Get-AppxPackage -allusers *bingfinance* | Remove-AppxPackage"
-timeout /t 1 /nobreak > NUL
-echo Uninstalling bingfinance
-PowerShell -Command "Get-AppxPackage -allusers *bingsports* | Remove-AppxPackage"
-timeout /t 1 /nobreak > NUL
-echo Uninstalling bingsports
-timeout /t 1 /nobreak > NUL
-PowerShell -Command "Get-AppxPackage -allusers *CommsPhone* | Remove-AppxPackage"
-echo Uninstalling CommsPhone
-timeout /t 1 /nobreak > NUL
-PowerShell -Command "Get-AppxPackage -allusers *Drawboard PDF* | Remove-AppxPackage"
-echo Uninstalling Drawboard PDF
-timeout /t 1 /nobreak > NUL
-echo Uninstalling Sway
-PowerShell -Command "Get-AppxPackage -allusers *Sway* | Remove-AppxPackage"
-echo Uninstalling WindowsAlarms
-timeout /t 1 /nobreak > NUL
-PowerShell -Command "Get-AppxPackage -allusers *WindowsAlarms* | Remove-AppxPackage"
-echo Uninstalling WindowsPhone
-PowerShell -Command "Get-AppxPackage -allusers *WindowsPhone* | Remove-AppxPackage"
-timeout /t 1 /nobreak > NUL
-echo Uninstalling zune
-PowerShell -Command "Get-AppxPackage -allusers *zune* | Remove-AppxPackage"
-timeout /t 1 /nobreak > NUL
-echo Uninstalling MicrosoftEdge
-PowerShell -Command "Get-AppxPackage Microsoft.MicrosoftEdge_41.16299.1004.0_netural__8wekyb3d8bbwe｜Remove-AppxPackage"
-timeout /t 3 /nobreak > NUL
-
-:: Disable P-States
-echo Disabling P-States
-for /f %%i in ('wmic path Win32_VideoController get PNPDeviceID^| findstr /L "PCI\VEN_"') do (
-	for /f "tokens=3" %%a in ('reg query "HKLM\SYSTEM\ControlSet001\Enum\%%i" /v "Driver"') do (
-		for /f %%i in ('echo %%a ^| findstr "{"') do (
-		     reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "DisableDynamicPstate" /t REG_DWORD /d "1" /f
-    )
-  )
-)
-timeout /t 3 /nobreak > NUL
-
-for /f %%n in ('wmic path win32_networkadapter get PNPDeviceID ^| findstr /L "VEN_"') do (
-Reg.exe ADD "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Enum\%%n\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "04" /f
-Reg.exe ADD "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Enum\%%n\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f
-Reg.exe ADD "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Enum\%%n\Device Parameters\Interrupt Management\MessageSignaledInterruptProperties" /v "MessageNumberLimit" /t REG_DWORD /d "256" /f
-)
-
-echo Disable Gpu Scaling
-for /f %%i in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /s /f Scaling') do set "str=%%i" & if "!str!" neq "!str:Configuration\=!" (
-	Reg.exe add "%%i" /v "Scaling" /t REG_DWORD /d "1" /f 
-)
-
-timeout /t 3 /nobreak > NUL
 
 :: device manager settings
 curl -g -k -L -# -o "C:\Windows\System32\DevManView.exe" "https://github.com/zipmishahl2/CS2-optimization/raw/main/DevManView.exe"
